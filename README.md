@@ -1,39 +1,21 @@
-# terraform-aws-deploy
+# CLOUDSMITH — Terraform AWS Deployer
 
-Small Terraform project for deploying AWS infrastructure with helper PowerShell scripts.
+Lightweight Terraform starter for provisioning AWS resources with PowerShell helpers.
 
-## Description
+Why CLOUDSMITH?
+- Simple: small, focused Terraform config for quick demos and learning.
+- Safe: local-state by default with clear guidance to move to remote backends.
+- Portable: PowerShell wrappers make common tasks one-line on Windows and PowerShell Core.
 
-This repository contains a Terraform configuration and PowerShell helper scripts to provision and manage AWS resources. It includes Terraform files (`main.tf`, `providers.tf`, `variables.tf`, `outputs.tf`) and scripts for common workflows (`deploy.ps1`, `plan.ps1`, `destroy.ps1`, `output.ps1`).
+## Quick Start
 
-## Prerequisites
-
-- Terraform (recommended >= 1.0)
-- PowerShell (Windows) or PowerShell Core for other platforms
-- AWS credentials configured (e.g. via `aws configure` or environment variables)
-
-## Files
-
-- `main.tf` — primary Terraform configuration
-- `providers.tf` — provider configuration (AWS)
-- `variables.tf` — variable declarations
-- `terraform.tfvars` — variable values (environment-specific)
-- `outputs.tf` — Terraform outputs
-- `deploy.ps1` — wrapper to run `terraform apply` with recommended args
-- `plan.ps1` — wrapper to run `terraform plan` (uses `terraform.tfvars`)
-- `destroy.ps1` — wrapper to run `terraform destroy`
-- `output.ps1` — wrapper to show Terraform outputs
-- `terraform.tfstate`, `terraform.tfstate.backup` — local state files (already present)
-
-## Usage
-
-1. Initialize the working directory:
+1. Initialize Terraform:
 
 ```powershell
 terraform init
 ```
 
-2. Review the plan (recommended):
+2. Preview changes (recommended):
 
 ```powershell
 .\plan.ps1
@@ -41,7 +23,7 @@ terraform init
 terraform plan -var-file=terraform.tfvars
 ```
 
-3. Apply changes to create/update infrastructure:
+3. Apply changes:
 
 ```powershell
 .\deploy.ps1
@@ -49,7 +31,7 @@ terraform plan -var-file=terraform.tfvars
 terraform apply -var-file=terraform.tfvars
 ```
 
-4. Inspect outputs:
+4. Show outputs:
 
 ```powershell
 .\output.ps1
@@ -57,7 +39,7 @@ terraform apply -var-file=terraform.tfvars
 terraform output
 ```
 
-5. Destroy resources when no longer needed:
+5. Destroy everything when finished:
 
 ```powershell
 .\destroy.ps1
@@ -65,24 +47,31 @@ terraform output
 terraform destroy -var-file=terraform.tfvars
 ```
 
-## Configuration
+## Repository Layout
 
-Edit `terraform.tfvars` to set region, instance types, names, and other settings. Do not commit secrets or sensitive values to version control.
+- `main.tf` — primary Terraform resources
+- `providers.tf` — provider configuration
+- `variables.tf` — variable declarations
+- `terraform.tfvars` — environment-specific values (gitignored)
+- `outputs.tf` — exported outputs
+- `deploy.ps1`, `plan.ps1`, `destroy.ps1`, `output.ps1` — convenience wrappers
+- `.terraform.lock.hcl` — provider lockfile
 
-## State
+## Safety & Notes
 
-This repository currently stores state locally in `terraform.tfstate`. For team usage, move to a remote state backend (S3 with DynamoDB locking recommended).
+- This repo currently uses local state files. Do NOT commit `terraform.tfstate` or `terraform.tfstate.backup`.
+- For collaboration, migrate state to an S3 backend with DynamoDB locking.
+- Keep AWS credentials and secrets out of version control. Use environment variables or secrets manager.
 
-## Security & Cleanup
+## Suggested Next Steps
 
-- Keep AWS credentials secure and use least-privilege IAM roles.
-- After testing, run `.\destroy.ps1` to remove created resources and avoid charges.
+- Add a minimal GitHub Actions workflow to run `terraform fmt` and `terraform validate` on PRs.
+- Add an S3 backend configuration and a short guide for team usage.
 
-## Next steps
+## Contributing
 
-- Move state to an S3 backend with locking for collaboration.
-- Add CI/CD to run `terraform fmt`, `terraform validate`, and automated plans.
+Feel free to open issues or PRs. If you want me to tweak the README, add examples, or include CI, tell me which parts to improve.
 
 ---
 
-If you'd like, I can run `terraform init` and a dry-run plan, or commit this `README.md` for you.
+If you want, I can also rename the repo to `CLOUDSMITH` locally (already pushed) and add a short badge or CI workflow. 
