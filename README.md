@@ -1,16 +1,18 @@
 # ☁️ CLOUDSMITH
 
-> Lightweight Terraform-powered AWS infrastructure deployment with Claude MCP.
+> Lightweight Terraform-powered AWS infrastructure deployment with 🤖 Claude MCP automation.
 
 ![Terraform](https://img.shields.io/badge/Terraform-IaC-623CE4?style=for-the-badge&logo=terraform)
 ![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazonaws)
+![Claude MCP](https://img.shields.io/badge/Claude-MCP_Automation-D97757?style=for-the-badge)
 ![PowerShell](https://img.shields.io/badge/PowerShell-Automation-5391FE?style=for-the-badge&logo=powershell)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-Deploy AWS infrastructure in minutes using Terraform, with streamlined PowerShell helpers for a clean and beginner-friendly workflow.
+Build and deploy AWS infrastructure through Claude MCP-driven Terraform workflows, enhanced with lightweight PowerShell automation.
 ---
 ## 🚀 Features
 
+* 🤖 Claude MCP integration for Terraform planning, deployment, and infrastructure operations
 * ⚡ Rapid AWS provisioning with Terraform
 * 🛠 PowerShell automation scripts for common operations
 * 🔒 Secure infrastructure-as-code practices
@@ -28,6 +30,7 @@ Before getting started, ensure you have:
 * AWS CLI configured
 * An AWS account with appropriate permissions
 * PowerShell 7+ (recommended)
+* Claude desktop
 
 Verify your setup:
 
